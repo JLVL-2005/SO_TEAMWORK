@@ -1,4 +1,6 @@
+#Librerias 
 import random
+import time
 
 #Integrantes
 #Leonel Figueroa Jauregui
@@ -41,5 +43,14 @@ def realizar_tarea_mas_corta(tarea):
     print("xd")
 
 
-while True:
-    for i in range(15):
+#Funcion de temporizador
+def temporizador():
+    
+
+
+    while True:
+        for i in range(15):
+
+
+
+
