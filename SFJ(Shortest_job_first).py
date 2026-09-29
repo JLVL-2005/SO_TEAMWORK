@@ -19,7 +19,7 @@ class Tarea:
         self.nombre = nombre
         self.tiempo_estimado = tiempo_estimado     
 
-tarea = Tarea()
+tarea = Tarea("", 0)
 
 lista_de_tareas = {
     "Tarea de ensamblador de cornejo" , 
@@ -34,6 +34,12 @@ lista_de_tareas = {
 def generar_tareas():
     tarea.tiempo_estimado = random.randint(15, 120)  
     tarea.nombre = random.choice(lista_de_tareas)
+    return tarea
 
 #Algoritmo de SFJ
 def realizar_tarea_mas_corta(tarea):
+    print("xd")
+
+
+while True:
+    for i in range(15):
