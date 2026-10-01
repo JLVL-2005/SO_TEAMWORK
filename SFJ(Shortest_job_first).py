@@ -1,8 +1,8 @@
 #Librerias 
 import random # Para generar tareas aleatorias y tiempos estimados
 import time # Para simular la ejecución de tareas con un temporizador de cuenta regresiva
-import os
-import platform
+import os # Para limpiar la pantalla de la consola según el sistema operativo
+import platform # Para detectar el sistema operativo y limpiar la pantalla de manera adecuada
 
 #Integrantes
 #Leonel Figueroa Jauregui
