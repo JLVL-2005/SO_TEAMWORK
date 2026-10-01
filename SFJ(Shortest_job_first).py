@@ -20,10 +20,11 @@ class Tarea:
     def __init__(self, nombre, tiempo_estimado):
         self.nombre = nombre
         self.tiempo_estimado = tiempo_estimado     
+    
 
 tarea = Tarea("", 0)
 
-lista_de_tareas = {
+lista = {
     "Tarea de ensamblador de cornejo" , 
     "Tarea de linux de carlos" , 
     "Tarea zzz de claudia" , 
@@ -42,6 +43,8 @@ lista_de_tareas = {
     "Curso de redes en Cisco" ,
 }
 
+lista_de_tareas = list(lista)
+
 def generar_tareas():
     tarea.tiempo_estimado = random.randint(15, 120)  
     tarea.nombre = random.choice(lista_de_tareas)
@@ -51,14 +54,14 @@ def generar_tareas():
 def realizar_tarea_mas_corta(tarea):
     print("xd")
 
-
 #Funcion de temporizador
 def temporizador():
+    print("xd")
+
+for i in range(15):
+    tarea = generar_tareas()
+    print(f"Tarea {i+1}: {tarea.nombre} con tiempo estimado de {tarea.tiempo_estimado} minutos")
     
-
-
-    while True:
-        for i in range(15):
 
 
 
