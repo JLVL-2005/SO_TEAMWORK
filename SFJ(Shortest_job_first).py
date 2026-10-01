@@ -20,9 +20,10 @@ import platform
 # estimacion de tiempo y se van realizando meediante el algoritmo SFJ.
 
 class Tarea: # Clase para representar una tarea con un nombre y un tiempo estimado
-    def __init__(self, nombre, tiempo_estimado):
+    def __init__(self, nombre, tiempo_estimado, agregada=False):
         self.nombre = nombre
         self.tiempo_estimado = tiempo_estimado
+        self.agregada = agregada # True si llegó mientras se ejecutaban las demás tareas
 
 tarea = Tarea("", 0)
 # Lista de tareas posibles
@@ -52,6 +53,19 @@ def generar_tareas():
     nombre = random.choice(lista_de_tareas)
     tiempo_estimado = random.randint(15, 120)
     return Tarea(nombre, tiempo_estimado)
+
+# Probabilidad de que llegue una tarea nueva cada vez que se termina una tarea
+PROBABILIDAD_NUEVA_TAREA = 0.5
+
+# Con una probabilidad del 50% genera una tarea nueva y la agrega a la lista.
+# Devuelve la tarea agregada, o None si esta vez no llegó ninguna.
+def agregar_tarea_con_probabilidad(tarea_list, probabilidad=PROBABILIDAD_NUEVA_TAREA):
+    if random.random() < probabilidad:
+        nueva = generar_tareas()
+        nueva.agregada = True
+        tarea_list.append(nueva)
+        return nueva
+    return None
 
 #Algoritmo de SFJ (Shortest Job First) el cual selecciona la tarea con el tiempo estimado más corto de la lista de tareas
 def realizar_tarea_mas_corta(tarea_list):
