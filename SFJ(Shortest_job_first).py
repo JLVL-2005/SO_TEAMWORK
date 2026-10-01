@@ -45,6 +45,8 @@ lista = {
 
 lista_de_tareas = list(lista)
 
+tarea_list = []
+
 def generar_tareas():
     tarea.tiempo_estimado = random.randint(15, 120)  
     tarea.nombre = random.choice(lista_de_tareas)
@@ -52,7 +54,7 @@ def generar_tareas():
 
 #Algoritmo de SFJ
 def realizar_tarea_mas_corta(tarea):
-    print("xd")
+    return min(tarea_list, key=len)
 
 
 #Temporizador de cuenta regresiva
@@ -65,7 +67,6 @@ def cuenta_regresiva(tiempo_estimado):
     print("¡Tiempo terminado!        ")
 
 
-tarea_list = []
 
 for i in range(15):
     tarea = generar_tareas()
