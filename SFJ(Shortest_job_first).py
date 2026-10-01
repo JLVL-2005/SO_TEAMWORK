@@ -28,22 +28,15 @@ class Tarea: # Clase para representar una tarea con un nombre y un tiempo estima
 tarea = Tarea("", 0)
 # Lista de tareas posibles
 lista = {
-    "Tarea de ensamblador de cornejo" , 
-    "Tarea de linux de carlos" , 
-    "Tarea zzz de claudia" , 
-    "Tarea god de meñogod" , 
-    "Tarea de redes de sanabria" ,
-    "Tarea en equipo del modular" ,
-    "Exposicion de sergio" ,
-    "Investigacion para el modular" , 
-    "Guia de estudio para examen de ingles" ,
-    "Tarea de metodos numericos" ,
-    "Tarea de POO" , 
-    "Tarea de ecuaciones diferenciales" ,
-    "Tarea de algebra lineal" ,
-    "Tarea de circuitos" ,
-    "Curso de coursera de bases de datos" , 
-    "Curso de redes en Cisco" ,
+    "Tarea de ensamblador de cornejo" , "Tarea de linux de carlos" , "Tarea zzz de claudia" , 
+    "Tarea god de meñogod" , "Tarea de redes de sanabria" , "Tarea en equipo del modular" , 
+    "Exposicion de sergio" , "Investigacion para el modular" , "Guia de estudio para examen de ingles" ,
+    "Tarea de metodos numericos" , "Tarea de POO" , "Tarea de ecuaciones diferenciales" ,
+    "Tarea de algebra lineal" , "Tarea de circuitos" , "Curso de coursera de bases de datos" , 
+    "Curso de redes en Cisco" , "Curso de python en coursera" , "Curso de c++ en coursera" , 
+    "Curso de java en coursera" , "Curso de redes en cisco" , "Curso de linux en coursera" , 
+    "Curso de ciberseguridad en coursera" , "Curso de inovacion y tecnologia en coursera" , "Curso SO en coursera" ,
+    "Examen en linea"
 }
 # Inicializamos la lista de tareas a partir del conjunto de tareas posibles
 lista_de_tareas = list(lista)
