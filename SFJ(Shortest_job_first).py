@@ -1,7 +1,6 @@
 #Librerias 
-import random
-import time
-  
+import random # Para generar tareas aleatorias y tiempos estimados
+import time # Para simular la ejecución de tareas con un temporizador de cuenta regresiva
 
 #Integrantes
 #Leonel Figueroa Jauregui
@@ -17,14 +16,14 @@ import time
 
 # Ejemplo de implementación de SFJ en Python: Se asignan tareas con una 
 # estimacion de tiempo y se van realizando meediante el algoritmo SFJ.
-class Tarea:
+
+class Tarea: # Clase para representar una tarea con un nombre y un tiempo estimado
     def __init__(self, nombre, tiempo_estimado):
         self.nombre = nombre
         self.tiempo_estimado = tiempo_estimado
 
-
 tarea = Tarea("", 0)
-
+# Lista de tareas posibles
 lista = {
     "Tarea de ensamblador de cornejo" , 
     "Tarea de linux de carlos" , 
@@ -43,17 +42,16 @@ lista = {
     "Curso de coursera de bases de datos" , 
     "Curso de redes en Cisco" ,
 }
-
+# Inicializamos la lista de tareas a partir del conjunto de tareas posibles
 lista_de_tareas = list(lista)
-
 tarea_list = []
-
+# Función para generar tareas aleatorias con un tiempo estimado entre 15 y 120 minutos
 def generar_tareas():
     nombre = random.choice(lista_de_tareas)
     tiempo_estimado = random.randint(15, 120)
     return Tarea(nombre, tiempo_estimado)
 
-#Algoritmo de SFJ
+#Algoritmo de SFJ (Shortest Job First) el cual selecciona la tarea con el tiempo estimado más corto de la lista de tareas
 def realizar_tarea_mas_corta(tarea_list):
     if not tarea_list:
         raise ValueError("No hay tareas para ejecutar.")
@@ -67,17 +65,18 @@ def cuenta_regresiva(tiempo_estimado):
         time.sleep(1)
         segundos -= 1
     print("\033[92m" + "¡Tarea hecha!        " + "\033[0m")
-
+# Generamos 15 tareas aleatorias y las agregamos a la lista de tareas
 for i in range(15):
     tarea = generar_tareas()
     tarea_list.append(tarea)
     print(f"{i+1}: {tarea.nombre} con tiempo estimado de" + "\033[91m" + f" {tarea.tiempo_estimado}" + "\033[0m" + " minutos")
-
+# Solicitamos al usuario si desea ejecutar las tareas
 validar = input("¿Desea ejecutar las tareas? (s/n): ")
+# Si el usuario no desea ejecutar las tareas, se cancela la ejecución y se sale del programa
 if validar.lower() != "s":
     print("Ejecución de tareas cancelada.")
     exit()
-
+# Si el usuario desea ejecutar las tareas, se ejecutan en orden de tiempo más corto (SFJ)
 print ("\nEjecutando tareas en orden de tiempo mas corto (SFJ):\n")
 for i in range(len(tarea_list)):
     tarea_ejecutar = realizar_tarea_mas_corta(tarea_list)
