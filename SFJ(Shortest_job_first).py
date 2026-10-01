@@ -65,16 +65,17 @@ def cuenta_regresiva(tiempo_estimado):
         time.sleep(1)
         segundos -= 1
     print("\033[92m" + "¡Tarea hecha!        " + "\033[0m")
+print("\033[94m" + "Tareas:" + "\033[0m")
 # Generamos 15 tareas aleatorias y las agregamos a la lista de tareas
 for i in range(15):
     tarea = generar_tareas()
     tarea_list.append(tarea)
     print(f"{i+1}: {tarea.nombre} con tiempo estimado de" + "\033[91m" + f" {tarea.tiempo_estimado}" + "\033[0m" + " minutos")
 # Solicitamos al usuario si desea ejecutar las tareas
-validar = input("¿Desea ejecutar las tareas? (s/n): ")
+validar = input("\033[94m" + "¿Desea ejecutar las tareas? (s/n): " + "\033[0m")
 # Si el usuario no desea ejecutar las tareas, se cancela la ejecución y se sale del programa
 if validar.lower() != "s":
-    print("Ejecución de tareas cancelada.")
+    print("\033[94m" + "Ejecución de tareas cancelada." + "\033[0m")
     exit()
 # Si el usuario desea ejecutar las tareas, se ejecutan en orden de tiempo más corto (SFJ)
 print ("\nEjecutando tareas en orden de tiempo mas corto (SFJ):\n")
@@ -84,4 +85,4 @@ for i in range(len(tarea_list)):
     tarea_list.remove(tarea_ejecutar)
     cuenta_regresiva(tarea_ejecutar.tiempo_estimado)
 
-print("\nTodas las tareas han sido ejecutadas.")
+print("\033[92m" + "Todas las tareas han sido ejecutadas." + "\033[0m")
