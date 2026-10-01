@@ -66,6 +66,8 @@ def realizar_tarea_mas_corta(tarea_list):
         raise ValueError("No hay tareas para ejecutar.")
     return min(tarea_list, key=lambda x: x.tiempo_estimado)
 
+
+
 #Temporizador de cuenta regresiva
 def cuenta_regresiva(tiempo_estimado):
     segundos = round(tiempo_estimado / 15) # 15-120 min -> 1-8 segundos
@@ -75,6 +77,9 @@ def cuenta_regresiva(tiempo_estimado):
         segundos -= 1
     print("\033[92m" + "¡Tarea hecha!        " + "\033[0m")
 
+
+
+#Funcion principal
 def ejecutar_tareas():
     print("\033[93m" + "Tareas:" + "\033[0m")
     # Generamos 15 tareas aleatorias y las agregamos a la lista de tareas
@@ -82,16 +87,21 @@ def ejecutar_tareas():
         tarea = generar_tareas()
         tarea_list.append(tarea)
         print(f"{i+1}: {tarea.nombre} con tiempo estimado de" + "\033[91m" + f" {tarea.tiempo_estimado}" + "\033[0m" + " minutos")
+
     # Solicitamos al usuario si desea ejecutar las tareas
     validar = input("\033[94m" + "¿Desea ejecutar las tareas? (s/n): " + "\033[0m")
     # Si el usuario no desea ejecutar las tareas, se cancela la ejecución y se sale del programa
     if validar.lower() != "s":
         print("\033[93m" + "Ejecución de tareas cancelada." + "\033[0m")
         exit()
+
+
     # Si el usuario desea ejecutar las tareas, se ejecutan en orden de tiempo más corto (SFJ)
     print ("\033[93m" + "\nEjecutando tareas en orden de tiempo mas corto (SFJ):\n" + "\033[0m")
     completadas = [] # Registro de tareas terminadas, en orden de ejecución
     total = len(tarea_list) # Sirve para numerar las tareas nuevas (16, 17, ...)
+
+
     while tarea_list: # La lista puede crecer durante la ejecución
             tarea_ejecutar = realizar_tarea_mas_corta(tarea_list)
             print(f"Haciendo: {tarea_ejecutar.nombre} con tiempo de" + "\033[91m" + f" {tarea_ejecutar.tiempo_estimado}" + "\033[0m" + " minutos")
@@ -111,12 +121,17 @@ def ejecutar_tareas():
             extra = ("\033[96m" + " (llegó durante la ejecución)" + "\033[0m") if t.agregada else ""
             print(f"{n}: {t.nombre} con tiempo de" + "\033[91m" + f" {t.tiempo_estimado}" + "\033[0m" + f" minutos{extra}")
 
-def clear(): # Función para limpiar la pantalla de la consola según el sistema operativo (windows)
+
+
+# Función para limpiar la pantalla de la consola según el sistema operativo (windows)
+def clear(): 
     if platform.system() == "Windows":
         os.system('cls')
     else:
         os.system('clear')
 
+
+#Ejecucion del programa principal
 while True: # Bucle principal del programa que permite ejecutar múltiples rondas de tareas
     clear()  
     ejecutar_tareas()
