@@ -65,13 +65,13 @@ def cuenta_regresiva(tiempo_estimado):
     print("¡Tiempo terminado!        ")
 
 
-
-
+tarea_list = []
 
 for i in range(15):
-    tarea[i] = generar_tareas()
+    tarea = generar_tareas()
+    tarea_list.append(tarea)
     print(f"Tarea {i+1}: {tarea.nombre} con tiempo estimado de {tarea.tiempo_estimado} minutos")
-    
+    cuenta_regresiva(tarea.tiempo_estimado)
 
 
 
