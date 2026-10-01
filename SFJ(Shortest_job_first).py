@@ -1,6 +1,8 @@
 #Librerias 
 import random # Para generar tareas aleatorias y tiempos estimados
 import time # Para simular la ejecución de tareas con un temporizador de cuenta regresiva
+import os
+import platform
 
 #Integrantes
 #Leonel Figueroa Jauregui
@@ -66,24 +68,42 @@ def cuenta_regresiva(tiempo_estimado):
         segundos -= 1
     print("\033[92m" + "¡Tarea hecha!        " + "\033[0m")
 
-print("\033[93m" + "Tareas:" + "\033[0m")
-# Generamos 15 tareas aleatorias y las agregamos a la lista de tareas
-for i in range(15):
-    tarea = generar_tareas()
-    tarea_list.append(tarea)
-    print(f"{i+1}: {tarea.nombre} con tiempo estimado de" + "\033[91m" + f" {tarea.tiempo_estimado}" + "\033[0m" + " minutos")
-# Solicitamos al usuario si desea ejecutar las tareas
-validar = input("\033[94m" + "¿Desea ejecutar las tareas? (s/n): " + "\033[0m")
-# Si el usuario no desea ejecutar las tareas, se cancela la ejecución y se sale del programa
-if validar.lower() != "s":
-    print("\033[93m" + "Ejecución de tareas cancelada." + "\033[0m")
-    exit()
-# Si el usuario desea ejecutar las tareas, se ejecutan en orden de tiempo más corto (SFJ)
-print ("\033[93m" + "\nEjecutando tareas en orden de tiempo mas corto (SFJ):\n" + "\033[0m")
-for i in range(len(tarea_list)):
-    tarea_ejecutar = realizar_tarea_mas_corta(tarea_list)
-    print(f"Haciendo: {tarea_ejecutar.nombre} con tiempo de" + "\033[91m" + f" {tarea_ejecutar.tiempo_estimado}" + "\033[0m" + " minutos")
-    tarea_list.remove(tarea_ejecutar)
-    cuenta_regresiva(tarea_ejecutar.tiempo_estimado)
+def ejecutar_tareas():
+    print("\033[93m" + "Tareas:" + "\033[0m")
+    # Generamos 15 tareas aleatorias y las agregamos a la lista de tareas
+    for i in range(15):
+        tarea = generar_tareas()
+        tarea_list.append(tarea)
+        print(f"{i+1}: {tarea.nombre} con tiempo estimado de" + "\033[91m" + f" {tarea.tiempo_estimado}" + "\033[0m" + " minutos")
+    # Solicitamos al usuario si desea ejecutar las tareas
+    validar = input("\033[94m" + "¿Desea ejecutar las tareas? (s/n): " + "\033[0m")
+    # Si el usuario no desea ejecutar las tareas, se cancela la ejecución y se sale del programa
+    if validar.lower() != "s":
+        print("\033[93m" + "Ejecución de tareas cancelada." + "\033[0m")
+        exit()
+    # Si el usuario desea ejecutar las tareas, se ejecutan en orden de tiempo más corto (SFJ)
+    print ("\033[93m" + "\nEjecutando tareas en orden de tiempo mas corto (SFJ):\n" + "\033[0m")
+    for i in range(len(tarea_list)):
+        tarea_ejecutar = realizar_tarea_mas_corta(tarea_list)
+        print(f"Haciendo: {tarea_ejecutar.nombre} con tiempo de" + "\033[91m" + f" {tarea_ejecutar.tiempo_estimado}" + "\033[0m" + " minutos")
+        tarea_list.remove(tarea_ejecutar)
+        cuenta_regresiva(tarea_ejecutar.tiempo_estimado)
 
-print("\033[92m" + "Todas las tareas han sido ejecutadas." + "\033[0m")
+    print("\033[92m" + "Todas las tareas han sido ejecutadas." + "\033[0m")
+
+def clear(): # Función para limpiar la pantalla de la consola según el sistema operativo (windows)
+    if platform.system() == "Windows":
+        os.system('cls')
+    else:
+        os.system('clear')
+
+while True: # Bucle principal del programa que permite ejecutar múltiples rondas de tareas
+    clear()  
+    ejecutar_tareas()
+    # Preguntamos al usuario si desea ejecutar otra ronda de tareas
+    validar = input("\033[94m" + "¿Desea ejecutar otra ronda de tareas? (s/n): " + "\033[0m")
+    if validar.lower() != "s":
+        print("\033[93m" + "Ejecución de tareas finalizada." + "\033[0m")
+        break
+    else:
+        tarea_list.clear()  # Limpiamos la lista de tareas para la siguiente ronda
