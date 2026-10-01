@@ -30,7 +30,16 @@ lista_de_tareas = {
     "Tarea god de meñogod" , 
     "Tarea de redes de sanabria" ,
     "Tarea en equipo del modular"
-    
+    "Exposicion de sergio" ,
+    "Investigacion para el modular" , 
+    "Guia de estudio para examen de ingles" ,
+    "Tarea de metodos numericos" ,
+    "Tarea de POO" , 
+    "Tarea de ecuaciones diferenciales" ,
+    "Tarea de algebra lineal" ,
+    "Tarea de circuitos" ,
+    "Curso de coursera de bases de datos" , 
+    "Curso de redes en Cisco" ,
 }
 
 def generar_tareas():
