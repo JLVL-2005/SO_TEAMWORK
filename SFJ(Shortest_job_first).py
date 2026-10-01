@@ -72,6 +72,12 @@ for i in range(15):
     tarea_list.append(tarea)
     print(f"{i+1}: {tarea.nombre} con tiempo estimado de {tarea.tiempo_estimado} minutos")
 
+validar = input("¿Desea ejecutar las tareas? (s/n): ")
+if validar.lower() != "s":
+    print("Ejecución de tareas cancelada.")
+    exit()
+
+print ("\nEjecutando tareas en orden de tiempo mas corto (SFJ):\n")
 for i in range(len(tarea_list)):
     tarea_ejecutar = realizar_tarea_mas_corta(tarea_list)
     print(f"Haciendo: {tarea_ejecutar.nombre} con tiempo de {tarea_ejecutar.tiempo_estimado} minutos")
