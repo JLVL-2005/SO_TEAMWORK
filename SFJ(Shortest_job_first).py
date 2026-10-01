@@ -38,6 +38,8 @@ lista = {
     "Curso de ciberseguridad en coursera" , "Curso de inovacion y tecnologia en coursera" , "Curso SO en coursera" ,
     "Examen en linea"
 }
+
+
 # Inicializamos la lista de tareas a partir del conjunto de tareas posibles
 lista_de_tareas = list(lista)
 tarea_list = []
