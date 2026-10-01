@@ -97,13 +97,24 @@ def ejecutar_tareas():
         exit()
     # Si el usuario desea ejecutar las tareas, se ejecutan en orden de tiempo más corto (SFJ)
     print ("\033[93m" + "\nEjecutando tareas en orden de tiempo mas corto (SFJ):\n" + "\033[0m")
-    for i in range(len(tarea_list)):
-        tarea_ejecutar = realizar_tarea_mas_corta(tarea_list)
-        print(f"Haciendo: {tarea_ejecutar.nombre} con tiempo de" + "\033[91m" + f" {tarea_ejecutar.tiempo_estimado}" + "\033[0m" + " minutos")
-        tarea_list.remove(tarea_ejecutar)
-        cuenta_regresiva(tarea_ejecutar.tiempo_estimado)
+    completadas = [] # Registro de tareas terminadas, en orden de ejecución
+    total = len(tarea_list) # Sirve para numerar las tareas nuevas (16, 17, ...)
+    while tarea_list: # La lista puede crecer durante la ejecución
+            tarea_ejecutar = realizar_tarea_mas_corta(tarea_list)
+            print(f"Haciendo: {tarea_ejecutar.nombre} con tiempo de" + "\033[91m" + f" {tarea_ejecutar.tiempo_estimado}" + "\033[0m" + " minutos")
+            tarea_list.remove(tarea_ejecutar)
+            cuenta_regresiva(tarea_ejecutar.tiempo_estimado)
+            completadas.append(tarea_ejecutar)
+            # Al terminar cada tarea, hay un 50% de probabilidad de que llegue una nueva
+            nueva = agregar_tarea_con_probabilidad(tarea_list)
+            if nueva:
+                total += 1
+                print("\033[96m" + f"+ Nueva tarea {total}: {nueva.nombre} con tiempo estimado de" + "\033[91m" + f" {nueva.tiempo_estimado}" + "\033[96m" + " minutos" + "\033[0m")
 
     print("\033[92m" + "Todas las tareas han sido ejecutadas." + "\033[0m")
+    for n, t in enumerate(completadas, 1): # Enumeramos las tareas completadas y mostramos si llegaron durante la ejecución
+            extra = " (llegó durante la ejecución)" if t.agregada else ""
+            print(f"{n}: {t.nombre} con tiempo de" + "\033[91m" + f" {t.tiempo_estimado}" + "\033[0m" + f" minutos{extra}")
 
 def clear(): # Función para limpiar la pantalla de la consola según el sistema operativo (windows)
     if platform.system() == "Windows":
