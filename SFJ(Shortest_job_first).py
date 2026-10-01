@@ -30,7 +30,7 @@ lista = {
     "Tarea zzz de claudia" , 
     "Tarea god de meñogod" , 
     "Tarea de redes de sanabria" ,
-    "Tarea en equipo del modular"
+    "Tarea en equipo del modular" ,
     "Exposicion de sergio" ,
     "Investigacion para el modular" , 
     "Guia de estudio para examen de ingles" ,
@@ -54,12 +54,22 @@ def generar_tareas():
 def realizar_tarea_mas_corta(tarea):
     print("xd")
 
-#Funcion de temporizador
-def temporizador():
-    print("xd")
+
+#Temporizador de cuenta regresiva
+def cuenta_regresiva(tiempo_estimado):
+    segundos = round(tiempo_estimado / 15) # 15-120 min -> 1-8 segundos
+    while segundos > 0:
+        print(f"{segundos} segundos restantes", end="\r")
+        time.sleep(1)
+        segundos -= 1
+    print("¡Tiempo terminado!        ")
+
+
+
+
 
 for i in range(15):
-    tarea = generar_tareas()
+    tarea[i] = generar_tareas()
     print(f"Tarea {i+1}: {tarea.nombre} con tiempo estimado de {tarea.tiempo_estimado} minutos")
     
 
