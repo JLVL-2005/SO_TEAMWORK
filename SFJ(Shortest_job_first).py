@@ -19,8 +19,8 @@ import time
 class Tarea:
     def __init__(self, nombre, tiempo_estimado):
         self.nombre = nombre
-        self.tiempo_estimado = tiempo_estimado     
-    
+        self.tiempo_estimado = tiempo_estimado
+
 
 tarea = Tarea("", 0)
 
@@ -48,14 +48,15 @@ lista_de_tareas = list(lista)
 tarea_list = []
 
 def generar_tareas():
-    tarea.tiempo_estimado = random.randint(15, 120)  
-    tarea.nombre = random.choice(lista_de_tareas)
-    return tarea
+    nombre = random.choice(lista_de_tareas)
+    tiempo_estimado = random.randint(15, 120)
+    return Tarea(nombre, tiempo_estimado)
 
 #Algoritmo de SFJ
-def realizar_tarea_mas_corta(tarea):
-    return min(tarea_list, key=len)
-
+def realizar_tarea_mas_corta(tarea_list):
+    if not tarea_list:
+        raise ValueError("No hay tareas para ejecutar.")
+    return min(tarea_list, key=lambda x: x.tiempo_estimado)
 
 #Temporizador de cuenta regresiva
 def cuenta_regresiva(tiempo_estimado):
@@ -66,14 +67,14 @@ def cuenta_regresiva(tiempo_estimado):
         segundos -= 1
     print("¡Tiempo terminado!        ")
 
-
-
 for i in range(15):
     tarea = generar_tareas()
     tarea_list.append(tarea)
-    print(f"Tarea {i+1}: {tarea.nombre} con tiempo estimado de {tarea.tiempo_estimado} minutos")
-    cuenta_regresiva(tarea.tiempo_estimado)
+    print(f"{i+1}: {tarea.nombre} con tiempo estimado de {tarea.tiempo_estimado} minutos")
 
-
-
-
+for i in range(len(tarea_list)):
+    tarea_ejecutar = realizar_tarea_mas_corta(tarea_list)
+    print(f"Haciendo: {tarea_ejecutar.nombre} con tiempo de {tarea_ejecutar.tiempo_estimado} minutos")
+    tarea_list.remove(tarea_ejecutar)
+    cuenta_regresiva(tarea_ejecutar.tiempo_estimado)
+    
