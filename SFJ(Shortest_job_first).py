@@ -115,7 +115,7 @@ def ejecutar_tareas():
     # Resumen final: tareas completadas en el orden en que se ejecutaron
     print("\033[93m" + "\nTareas completadas:" + "\033[0m")
     for n, t in enumerate(completadas, 1): # Enumeramos las tareas completadas y mostramos si llegaron durante la ejecución
-            extra = " (llegó durante la ejecución)" if t.agregada else ""
+            extra = ("\033[96m" + " (llegó durante la ejecución)" + "\033[0m") if t.agregada else ""
             print(f"{n}: {t.nombre} con tiempo de" + "\033[91m" + f" {t.tiempo_estimado}" + "\033[0m" + f" minutos{extra}")
 
 def clear(): # Función para limpiar la pantalla de la consola según el sistema operativo (windows)
