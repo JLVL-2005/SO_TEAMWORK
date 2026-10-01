@@ -1,6 +1,7 @@
 #Librerias 
 import random
 import time
+  
 
 #Integrantes
 #Leonel Figueroa Jauregui
@@ -65,12 +66,12 @@ def cuenta_regresiva(tiempo_estimado):
         print(f"{segundos} segundos restantes", end="\r")
         time.sleep(1)
         segundos -= 1
-    print("¡Tiempo terminado!        ")
+    print("\033[92m" + "¡Tarea hecha!        " + "\033[0m")
 
 for i in range(15):
     tarea = generar_tareas()
     tarea_list.append(tarea)
-    print(f"{i+1}: {tarea.nombre} con tiempo estimado de {tarea.tiempo_estimado} minutos")
+    print(f"{i+1}: {tarea.nombre} con tiempo estimado de" + "\033[91m" + f" {tarea.tiempo_estimado}" + "\033[0m" + " minutos")
 
 validar = input("¿Desea ejecutar las tareas? (s/n): ")
 if validar.lower() != "s":
@@ -80,7 +81,8 @@ if validar.lower() != "s":
 print ("\nEjecutando tareas en orden de tiempo mas corto (SFJ):\n")
 for i in range(len(tarea_list)):
     tarea_ejecutar = realizar_tarea_mas_corta(tarea_list)
-    print(f"Haciendo: {tarea_ejecutar.nombre} con tiempo de {tarea_ejecutar.tiempo_estimado} minutos")
+    print(f"Haciendo: {tarea_ejecutar.nombre} con tiempo de" + "\033[91m" + f" {tarea_ejecutar.tiempo_estimado}" + "\033[0m" + " minutos")
     tarea_list.remove(tarea_ejecutar)
     cuenta_regresiva(tarea_ejecutar.tiempo_estimado)
-    
+
+print("\nTodas las tareas han sido ejecutadas.")
